@@ -1,0 +1,87 @@
+# =============================================================================
+# TOUCHBeauty Automated Content Pipeline — .gitignore
+#
+# Tracks the WORKFLOW (scripts, skill, instructions, CSV templates, generated
+# post HTML) and the DEMO itself, while excluding:
+#   * sensitive credentials (.env)
+#   * generated media (images / videos) that are NOT part of the demo
+#   * tool caches and scratch files
+#
+# The "process featured in the demo video" = the TRIFECTA blog run
+# (PROTOCOL 1 article -> media -> WordPress live -> PROTOCOL 5 lifestyle
+# overlays -> FB/IG captions; PROTOCOL 4 auto-post is badged FUTURE FEATURE).
+# Only the exact assets that demo displays are re-included below.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 1) Sensitive credentials  (keep the *.example templates, ignore the real ones)
+# -----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.meta.example
+
+# -----------------------------------------------------------------------------
+# 2) Python caches, editor / OS junk, backups
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.bak
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# -----------------------------------------------------------------------------
+# 3) Tool scratch & transient artifacts (not part of the workflow)
+# -----------------------------------------------------------------------------
+.qwenwork-media-result-*.json
+.qoder-input-files/
+.qoder-input-images/
+overlay-preview/
+_demo_working/
+*.zip
+
+# -----------------------------------------------------------------------------
+# 4) Generated media is an OUTPUT of the process, not the process itself.
+#    Ignore all images / videos by default; re-include only the demo assets.
+# -----------------------------------------------------------------------------
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.bmp
+*.tif
+*.tiff
+*.mp4
+*.mov
+*.m4v
+*.webm
+*.avi
+
+# -----------------------------------------------------------------------------
+# 5) RE-INCLUDE — the assets the demo video actually features
+# -----------------------------------------------------------------------------
+
+# The demo video (kept). Its generator working folder _demo_working/ is NOT tracked (see section 3).
+!TOUCHBeauty_Content_Pipeline_Demo.mp4
+
+# Brand wordmarks consumed by overlay_brand.py at runtime (process inputs)
+!TB_Logo_header.png
+!TB_Logo_footer.png
+
+# TRIFECTA run media the demo displays (slide-by-slide):
+#   featured hero, blog infographic, three product base-lock refs, portrait cards
+!WP_ImgUpload/Images/touchbeauty-trifecta-3-in-1-facial-lift-led-glow-landscape.webp
+!WP_ImgUpload/Images/touchbeauty-trifecta-microcurrent-led-facial-infographic-landscape-v2.webp
+!reference_images/trifecta/1767.main.1.webp
+!reference_images/trifecta/orange_assembled_roller.png
+!reference_images/trifecta/orange_assembled_led.png
+!portrait-infographics/4x5/touchbeauty-trifecta-3-in-1-facial-lift-led-glow-portrait-ig.jpg
+!portrait-infographics/9x16/touchbeauty-trifecta-3-in-1-facial-lift-led-glow-story-ig.jpg
+
+# -----------------------------------------------------------------------------
+# 6) Superseded / rejected batches (kept on disk for safety, never committed)
+# -----------------------------------------------------------------------------
+**/_superseded*/
+**/_rejected*/
